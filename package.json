@@ -73,6 +73,7 @@
     "build-test": "tsc -p test",
     "copy-dist-files": "cp dist/sip.js dist/sip-$npm_package_version.js && cp dist/sip.min.js dist/sip-$npm_package_version.min.js",
     "build": "npm run generate-grammar && npm run build-lib && npm run build-reg-bundle && npm run build-min-bundle && npm run copy-dist-files",
+    "build-no-copy": "npm run generate-grammar && npm run build-lib && npm run build-reg-bundle && npm run build-min-bundle",
     "browser-test": "npm run build-test && sleep 2 && (open http://localhost:9876/debug.html &) && karma start karma.conf.cjs --reporters kjhtml --no-single-run",
     "command-line-test": "npm run build-test && karma start karma.conf.cjs --reporters mocha --browsers ChromeHeadlessFakeMediaStream --single-run",
     "build-and-test": "npm run build && npm run command-line-test",
@@ -101,6 +102,6 @@
     "lint": "eslint --ext .ts .",
     "lint-fix": "eslint --ext .ts --fix .",
     "version": "sed -i '' \"s/LIBRARY_VERSION = .*/LIBRARY_VERSION = \\\"$npm_package_version\\\";/\" src/version.ts",
-    "prepare": "npm run lint-fix && npm run build"
+    "prepare": "npm run lint-fix && npm run build-no-copy"
   }
 }
